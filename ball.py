@@ -63,7 +63,7 @@ class ball():
             temporary = y1
             y1 = y2
             y2 = temporary
-        if(((x1-x2)>30) or((y1-y2)>30)):
+        if(((x1-x2)>15) or((y1-y2)>15)):
             if(self.frame==3):
                 self.frame=1
             else:
@@ -144,7 +144,7 @@ class ball():
                 temporary = y1
                 y1 = y2
                 y2 = temporary
-            if(-30<(y1 - y2) < 30):
+            if(-30<(y1 - y2)<30):
                 selfBorder = self.getBallBorder()
                 ball2Border = ball2.getBallBorder()
                 for each in selfBorder:

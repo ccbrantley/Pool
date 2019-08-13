@@ -28,13 +28,7 @@ cueBall = ball.ball(0,200,0)
 allBall = game.getGameBalls()
 allBall.append(cueBall)
 def main():
-    wn.onscreenclick(getCoordinates,1)
-    wn.onkeypress(shootCueBall, "Up")
-    wn.onkeypress(frameAdv, "Down")
-    wn.onkeypress(movStickLeft, "Left")
-    wn.onkeypress(movStickRight, "Right")
-    wn.onkey(turtle.bye, "Escape")
-    #wn.onkey(resetGame,"r")
+    setKeys()
     wn.listen()
     wn.mainloop()
 def movStickLeft():
@@ -47,10 +41,21 @@ def frameAdv():
 def getCoordinates(x,y):
     turtle.setpos(x,y)
     print(turtle.pos())
-def shootCueBall():
+def setKeys():
+    wn.onscreenclick(getCoordinates,1)
+    wn.onkeypress(shootCueBall, "Up")
+    wn.onkeypress(frameAdv, "Down")
+    wn.onkeypress(movStickLeft, "Left")
+    wn.onkeypress(movStickRight, "Right")
+    wn.onkey(turtle.bye, "Escape")
+    #wn.onkey(resetGame,"r")
+def muteKeys():
     wn.onkeypress(None, "Up")
     wn.onkeypress(None, "Left")
     wn.onkeypress(None, "Right")
+    
+def shootCueBall():
+    muteKeys()
     play = [cueBall]
     gameScene = list()
     cueBall.setDirection(cueStick.getDirection())
@@ -84,7 +89,7 @@ def shootCueBall():
     wn.onkeypress(shootCueBall, "Up")
     wn.onkeypress(movStickLeft, "Left")
     wn.onkeypress(movStickRight, "Right")
-
+    setKeys()
 main()
 
      
