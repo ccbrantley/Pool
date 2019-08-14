@@ -174,25 +174,35 @@ class ball():
         return 180 
     
     def collisionWTable(self):
-        if((self.x>200)or(self.x<-200)):
-            self.edgeBounce(True)
-        if((self.y>300)or(self.y<-300)):
-            self.edgeBounce(False)
+        newX = coordinates[0] + 21# Check to see if these
+        newY = coordinates[1] + 21# are actually 16
+        if((newX>195)or(newX<-195)):
+            return True
+        if((newY>295)or(newY<-295)):
+            return True
+        return False
 
     def collisionWPocket(self):
-        if((self.x<-195)):
-            if(self.y>280):
+        if((self.x<-160)):
+            if(self.y>315):
                 return True
-        if((self.x>+195)):
-            if(self.y>280):
+        if((self.x>160)):
+            if(self.y>315):
                 return True
-        if((self.x<-195)):
-            if(self.y<-280):
+        if((self.x<-160)):
+            if(self.y<-315):
                 return True
-        if((self.x>+195)):
-            if(self.y<-280):
+        if((self.x>160)):
+            if(self.y<-315):
+                return True
+        if(self.x<-165):
+            if((self.y>-16)and(self.y<16)):
+                return True
+        if(self.x>165):
+            if((self.y>-16)and(self.y<16)):
                 return True
         return False
+    
     
     def getBallBorder(self):
         ballBorder = list()
