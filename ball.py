@@ -102,32 +102,13 @@ class ball():
 
 #Currently only focuses on diagonal strikes
 #Needs solution
-    def ballBounce(self,sectorHit,xPos):
-        deflection = 0
-        if(sectorHit =="RB"):
-            if(xPos<8):
-                deflection = -33
-            else:
-                deflection = +33
-        if(sectorHit == "LB"):
-            if(xPos<-8):
-                deflection = 33
-            else:
-                deflection = -33
-        if(sectorHit == "LT"):
-            if(xPos<-8):
-                deflection = -33
-            else:
-                deflection = 33
-        if(sectorHit == "RT"):
-            if(xPos<8):
-                deflection = -33
-            else:
-                deflection = 33
-        if(-3<(xPos)>3):
-            deflection = 0
-        turtle.setheading(self.direction)
-        turtle.seth(turtle.heading()+deflection)
+    def ballBounce(self,deflection):
+        angleDiff = self.direction - deflection
+        if((angleDiff)>0):
+            newDirection = 30
+        else:
+            newDirection = -30
+        turtle.setheading(self.direction+newDirection)
         self.direction = turtle.heading()
 
     def collisionWBall(self,ball2):
@@ -151,14 +132,19 @@ class ball():
                     if(each in ball2Border):
                         if(self.x<ball2.x):
                             sectorHit = "L"
+                            selfHit = "R"
                         else:
                             sectorHit = "R"
+                            selfHit = "L"
                         if(self.y<ball2.y):
                             sectorHit+= "B"
+                            selfHit = "T"
                         else:
                             sectorHit+="T"
-                        ball2.direction = ball2.getDeflection(each[0],sectorHit)
-                        self.ballBounce(sectorHit,int(each[0]-ball2.x))
+                            selfHit = "B"
+                        deflection = ball2.getDeflection(each[0],sectorHit)
+                        ball2.direction = deflection
+                        self.ballBounce(deflection)
                         return True
         return False
     
@@ -185,7 +171,6 @@ class ball():
             radian = math.acos(xCollision/16)
             angle = radian/0.0174532925
             return angle
-            
         return 180 
     
     def collisionWTable(self):
@@ -193,15 +178,6 @@ class ball():
             self.edgeBounce(True)
         if((self.y>300)or(self.y<-300)):
             self.edgeBounce(False)
-            
-    def collisionWTableCor(self,coordinates):
-        newX = coordinates[0] + 21
-        newY = coordinates[1] + 21
-        if((newX>195)or(newX<-195)):
-            return True
-        if((newY>295)or(newY<-295)):
-            return True
-        return False
 
     def collisionWPocket(self):
         if((self.x<-195)):
@@ -223,6 +199,7 @@ class ball():
         for x in range(-15,16):
             y = math.sqrt(16**2-(x)**2)
             ballBorder.append((int(self.x+x),int(self.y+y)))
-            ballBorder.append((int(self.x+x),int(self.y+(-y))))
+            if(-15<(x)<15):
+                ballBorder.append((int(self.x+x),int(self.y+(-y))))
         return ballBorder
             

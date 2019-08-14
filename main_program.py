@@ -59,9 +59,9 @@ def shootCueBall():
     play = [cueBall]
     gameScene = list()
     cueBall.setDirection(cueStick.getDirection())
-    for x in range(30,1,-1):#40
-       # if(len(play)>0):
-       #     x = int((x/((len(play)/4))))
+    for x in range(30,1,-1):
+        #if(len(play)>0):
+        #    x = int((x/((len(play)/4))))
         for y in range(x,1,-1):
             for balls in play:
                 turtle.setpos(balls.getCoordinates())
@@ -71,6 +71,7 @@ def shootCueBall():
                 if (balls.collisionWPocket()) == True:
                     play.remove(balls)
                     balls.setCoordinates((-1000,-1000))
+                    continue
                 for ball in allBall:
                     if(balls != ball):
                         if(balls.collisionWBall(ball) == True):
@@ -84,7 +85,8 @@ def shootCueBall():
     #Resetting Table
     if(cueBall not in play):
         cueBall.setCoordinates((0,200))
-        cueBall.populateTable()   
+        turtle.goto(0,200)
+        cueBall.populateTable()
     sceneMaker.animateScene(gameScene)
     wn.onkeypress(shootCueBall, "Up")
     wn.onkeypress(movStickLeft, "Left")
