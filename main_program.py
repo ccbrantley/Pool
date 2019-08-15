@@ -7,8 +7,7 @@ import gameType
 #Making Images available
 for x in range(1,361):
     turtle.register_shape("./Sticks/stick"+str(x)+".gif")
-turtle.register_shape("./Balls/ball0.gif")
-for x in range(1,16):
+for x in range(0,16):
     for y in range(1,4):
         turtle.register_shape("./Balls/ball"+str(x)+str(y)+".gif")
 import piecer

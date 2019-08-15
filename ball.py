@@ -9,19 +9,17 @@ class ball():
         self.y = y
         self.oldY = y
         self.typeBall = typeBall
-        self.imgAddr = ("./Balls/ball"+str(self.typeBall)+".gif")
         self.frame = 1
+        self.imgAddr = ("./Balls/ball"+str(self.typeBall)\
+                    +str(self.frame)+".gif")
         self.direction = 0
         self.stampId = ""
         self.populateTable()
         
     def populateTable(self):
         turtle.goto(self.x,self.y)
-        if(self.typeBall == 0):
-            turtle.shape("./Balls/ball0.gif")
-        else:
-            turtle.shape("./Balls/ball"+str(self.typeBall)\
-                         +str(self.frame)+".gif")
+        turtle.shape("./Balls/ball"+str(self.typeBall)\
+                    +str(self.frame)+".gif")
         self.stampId = turtle.stamp()
         
     def deleteBall(self):
@@ -81,11 +79,8 @@ class ball():
         coordinate = passedData[0]
         typeBall = passedData[1]
         frame = passedData[2]
-        if(typeBall == 0):
-            turtle.shape("./Balls/ball0.gif")
-        else:
-            turtle.shape("./Balls/ball"+str(typeBall)\
-                         +str(frame)+".gif")
+        turtle.shape("./Balls/ball"+str(typeBall)\
+                    +str(frame)+".gif")
         turtle.setpos(coordinate)
         turtle.stamp()
         
