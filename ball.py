@@ -14,8 +14,7 @@ class ball():
                     +str(self.frame)+".gif")
         self.direction = 0
         self.stampId = ""
-        self.populateTable()
-        
+        self.populateTable()  
     def populateTable(self):
         turtle.goto(self.x,self.y)
         turtle.shape("./Balls/ball"+str(self.typeBall)\

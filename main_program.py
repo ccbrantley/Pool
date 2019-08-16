@@ -58,7 +58,7 @@ def shootCueBall():
     play = [cueBall]
     gameScene = list()
     cueBall.setDirection(cueStick.getDirection())
-    for x in range(30,1,-1):
+    for x in range(32,1,-1):
         #if(len(play)>0):
         #    x = int((x/((len(play)/4))))
         for y in range(x,1,-1):
@@ -81,12 +81,13 @@ def shootCueBall():
             temporary = balls
             gameFrame.appendData(temporary)
         gameScene.append(gameFrame)
+    sceneMaker.animateScene(gameScene)
     #Resetting Table
     if(cueBall not in play):
         cueBall.setCoordinates((0,200))
-        turtle.goto(0,200)
+        cueBall.setOldCoordinates()
         cueBall.populateTable()
-    sceneMaker.animateScene(gameScene)
+    turtle.update()
     wn.onkeypress(shootCueBall, "Up")
     wn.onkeypress(movStickLeft, "Left")
     wn.onkeypress(movStickRight, "Right")
