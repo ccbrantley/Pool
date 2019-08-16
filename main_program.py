@@ -15,7 +15,7 @@ import piecer
 wn = turtle.Screen()
 wn.setup(width = 1.0, height = 1.0)
 turtle.title("Billiards")
-wn.bgpic("./Background/pooltable0.gif")
+wn.bgpic("./Background/poolTable0.gif")
 turtle.tracer(0,0)
 turtle.pu()
 turtle.ht()
